@@ -61,6 +61,8 @@ class App extends Component {
 export default App;
 
 const Container = styled.div`
+  @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
   background-color: #1c1c1c;
   min-height: 100vh;
-`
+  font-family: "IBM Plex Sans", monospace;
+`;
