@@ -4,6 +4,13 @@ import axios from "axios";
 import { Form } from "./components/Form";
 import { User } from "./components/User";
 import { Friends } from "./components/Friends";
+import { token } from "./auth";
+
+let options = {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+};
 
 class App extends Component {
   state = {
@@ -22,18 +29,20 @@ class App extends Component {
 
   fetchData = () => {
     axios
-      .get(`https://api.github.com/users/${this.state.searchTerm}`)
+      .get(`https://api.github.com/users/${this.state.searchTerm}`, options)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.error(err));
 
     axios
-      .get(`https://api.github.com/users/${this.state.searchTerm}/followers`)
+      .get(
+        `https://api.github.com/users/${this.state.searchTerm}/followers`,
+        options
+      )
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.error(err));
   };
 
   render() {
-    console.log(this.state.searchTerm)
     return (
       <>
         <Form
