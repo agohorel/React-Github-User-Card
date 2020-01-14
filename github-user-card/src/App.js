@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import { Form } from "./components/Form";
 import { User } from "./components/User";
@@ -8,15 +9,27 @@ class App extends Component {
   state = {
     user: {},
     friends: [],
-    searchTerm: ""
+    searchTerm: "agohorel"
   };
+
+  componentDidMount() {
+    axios
+      .get(`https://api.github.com/users/${this.state.searchTerm}`)
+      .then(res => this.setState({ user: res.data }))
+      .catch(err => console.error(err));
+
+    axios
+      .get(`https://api.github.com/users/${this.state.searchTerm}/followers`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.error(err));
+  }
 
   render() {
     return (
       <>
         <Form></Form>
-        <User></User>
-        <Friends></Friends>
+        <User user={this.state.user}></User>
+        <Friends friends={this.state.friends}></Friends>
       </>
     );
   }
