@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Friend = ({ friend }) => {
-  console.log(friend);
+export const Friend = ({ friend, searchTerm, updateSearchTerm, fetchData }) => {
   return (
-    <FriendCard>
+    <FriendCard
+      onClick={() => {
+        updateSearchTerm(friend.login, fetchData);
+      }}
+    >
       <Avatar src={friend.avatar_url}></Avatar>
       <h2>{friend.login}</h2>
     </FriendCard>
@@ -24,7 +27,14 @@ const FriendCard = styled.div`
     margin: 0 0 0 10px;
   }
 
-  h3 {
+  :hover {
+    cursor: pointer;
+    background-color: #3c3c3c;
+    color: #eee;
+
+    img {
+      filter: grayscale(1);
+    }
   }
 `;
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const User = ({ user }) => {
-//   console.log(user);
+  //   console.log(user);
   return (
     <UserCard>
       <Avatar src={user.avatar_url}></Avatar>
