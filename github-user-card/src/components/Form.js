@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Form = ({ searchTerm, updateSearchTerm, fetchData }) => {
   return (
     <FormContainer>
-      <StyledForm>
+      <StyledForm onSubmit={e => e.preventDefault()}>
         <label htmlFor="search">Search for a Github User</label>
         <input
           type="text"
