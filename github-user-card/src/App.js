@@ -26,7 +26,7 @@ class App extends Component {
 
   updateSearchTerm = (input, callback) => {
     this.setState({ searchTerm: input }, () => {
-      callback(this.state.searchTerm);
+      callback && callback(this.state.searchTerm);
     });
   };
 
@@ -53,7 +53,7 @@ class App extends Component {
           updateSearchTerm={this.updateSearchTerm}
           fetchData={this.fetchData}
         ></Form>
-        <User user={this.state.user}></User>
+        <User user={this.state.user} searchTerm={this.state.searchTerm}></User>
         <Friends
           friends={this.state.friends}
           updateSearchTerm={this.updateSearchTerm}
