@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 import { Form } from "./components/Form";
 import { User } from "./components/User";
@@ -44,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         <Form
           searchTerm={this.state.searchTerm}
           updateSearchTerm={this.updateSearchTerm}
@@ -52,9 +53,14 @@ class App extends Component {
         ></Form>
         <User user={this.state.user}></User>
         <Friends friends={this.state.friends}></Friends>
-      </>
+      </Container>
     );
   }
 }
 
 export default App;
+
+const Container = styled.div`
+  background-color: #1c1c1c;
+  min-height: 100vh;
+`
