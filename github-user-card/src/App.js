@@ -13,6 +13,14 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  updateSearchTerm = input => {
+    this.setState({ searchTerm: input });
+  };
+
+  fetchData = () => {
     axios
       .get(`https://api.github.com/users/${this.state.searchTerm}`)
       .then(res => this.setState({ user: res.data }))
@@ -22,12 +30,17 @@ class App extends Component {
       .get(`https://api.github.com/users/${this.state.searchTerm}/followers`)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.error(err));
-  }
+  };
 
   render() {
+    console.log(this.state.searchTerm)
     return (
       <>
-        <Form></Form>
+        <Form
+          searchTerm={this.state.searchTerm}
+          updateSearchTerm={this.updateSearchTerm}
+          fetchData={this.fetchData}
+        ></Form>
         <User user={this.state.user}></User>
         <Friends friends={this.state.friends}></Friends>
       </>

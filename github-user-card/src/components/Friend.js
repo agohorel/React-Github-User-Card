@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Friend = () => {
+export const Friend = ({friend}) => {
     return (
         <div>
-            friend card
+            {friend.login}
         </div>
     )
 }
