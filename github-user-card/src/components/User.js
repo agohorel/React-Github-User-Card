@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export const User = ({ user }) => {
+import Calendar from "./Calendar";
+
+export const User = ({ user, searchTerm }) => {
   //   console.log(user);
   return (
     <UserCard>
@@ -10,6 +12,7 @@ export const User = ({ user }) => {
       <h3>{user.company}</h3>
       <h3>{user.location}</h3>
       <p>{user.bio}</p>
+      <Calendar user={user.login}></Calendar>
     </UserCard>
   );
 };
